@@ -1,0 +1,5 @@
+.vs/
+bin/
+leetcode_solver.csproj
+leetcode_solver.sln
+obj/

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 public class Solution
 {
 	public bool isValidBox(char[][] board, int si, int sj)
@@ -12,6 +13,7 @@ public class Solution
 				used.Add(board[i][j] - '0');
 			}
 		}
+		return true;
 	}
 	public bool IsValidSudoku(char[][] board)
 	{

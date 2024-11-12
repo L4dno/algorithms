@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+namespace lc_49
+{
     public class Solution
     {
         const int AlphSize = 26;
@@ -40,7 +42,7 @@ using System.Threading.Tasks;
 
 
     public static class _0049GroupAnagrams
-{
+    {
         static public int Tcnt = 3;
         public static List<string[]> Inputs = new List<string[]>()
     {
@@ -66,4 +68,5 @@ using System.Threading.Tasks;
         }
     };
     }
+}
 

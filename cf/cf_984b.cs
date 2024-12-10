@@ -19,6 +19,9 @@ namespace algorithms.cf
                             .ToList<int>();
             int n = tmp[0];
             int k = tmp[1];
+            // можно было создать массив
+            // затем отсортировать в обратном порядке
+            // и сложить k первых элементов
 
             Dictionary<int,int> codeToProfit = new Dictionary<int,int>();
 
@@ -29,7 +32,14 @@ namespace algorithms.cf
                              .Split(' ')
                              .Select(int.Parse)
                              .ToList<int>();
-                codeToProfit[tmp[0]] = codeToProfit.GetVa tmp[1];
+                if (codeToProfit.ContainsKey(tmp[0]))
+                {
+                    codeToProfit[tmp[0]] += tmp[1];
+                }
+                else
+                {
+                    codeToProfit[tmp[0]] = tmp[1];
+                }
             }
 
             // не можем все бренды уместить

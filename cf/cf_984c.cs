@@ -71,7 +71,7 @@ namespace algorithms.cf
             }
         }
 
-        public static void Main()
+        public static void La()
         {
             int t = 0;
             t = Convert.ToInt32(Console.ReadLine());

@@ -16,11 +16,12 @@ namespace algorithms.cf
             int m = nml[1];
             int l = nml[2];
 
-            PriorityQueue<int,int> = 
+            //PriorityQueue<int, int> =; 
             for (int i = 0; i < n; i++) 
             { 
 
             }
+            return 0;
         }
 
         public static void Launch()

@@ -12,7 +12,7 @@ namespace leetcode_solver
     {
         static void Main(string[] args)
         {
-            algorithms.cf.cf_988c.Launch();
+            algorithms.cf.cf_988d.Launch();
             //for (int i = 0; i < _0049GroupAnagrams.Tcnt; ++i)
             //{
             //    Solution sol = new Solution();

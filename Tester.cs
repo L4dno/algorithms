@@ -12,7 +12,7 @@ namespace leetcode_solver
     {
         static void Main(string[] args)
         {
-            algo.cf.cf_988f.Launch();
+            algo.ozon_jan.ozon_6.Launch();
             //for (int i = 0; i < _0049GroupAnagrams.Tcnt; ++i)
             //{
             //    Solution sol = new Solution();

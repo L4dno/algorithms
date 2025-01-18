@@ -58,7 +58,7 @@ namespace algo.cf
             else
                 return r;
         }
-        public static void Main()
+        public static void Launch()
         {
             int t = Convert.ToInt32(Console.ReadLine());
             while (t-- > 0)

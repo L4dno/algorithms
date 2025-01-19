@@ -8,6 +8,38 @@ namespace algo.ozon_jan
 {
     internal class ozon_6
     {
+        // graph and number of edges
+        static List<(int, int)>[] g;
+        static bool[] color;
+        static int ons;
+        static List<int> levers;
+        static int dfs(int v, bool isFirstInComponent, int numLever)
+        {
+            int childSum = 0;
+            color[v] = true;
+            foreach (var p in g[v])
+            {
+                if (color[p.Item1] == false)
+                    childSum += dfs(p.Item1, false, p.Item2);
+            }
+            childSum %= 2;
+            // зажигаем
+            if (childSum == 0)
+            {
+                if (!isFirstInComponent)
+                {
+                    ons += 1;
+                    levers.Add(numLever+1);//мы добавляем номер ребра, а не вершину
+                }
+                return 1;
+            }
+            else
+            {
+                ons += 1;
+                return 0;
+            }
+            
+        }
         static public void Launch()
         {
 
@@ -22,18 +54,36 @@ namespace algo.ozon_jan
                 n = int.Parse((string)nm[0]);
                 m = int.Parse((string)nm[1]);
 
-                var laverings = new List<(int, int)>();
+                g = new List<(int, int)>[n];
+                color = new bool[n];
+                ons = 0;
+                levers = new List<int>();
+
+                for (int vertInd = 0;vertInd < n;++vertInd)
+                {
+                    g[vertInd] = new List<(int, int)>();
+                }
 
                 for (int i = 0; i < m; i++)
                 {
                     var ab = input.ReadLine().Split();
-                    laverings.Add((int.Parse((string)ab[0]) - 1,
-                                    int.Parse((string)ab[1]) - 1));
+                    int a = int.Parse(ab[0]) - 1;
+                    int b = int.Parse(ab[1]) - 1;
+                    g[a].Add((b, i));
+                    g[b].Add((a, i));
                 }
 
-                var dp = new List<(int, bool)>();
-                dp[]
+                // dfs?
+                // components change in picking edges
+                for (int vertInd = 0; vertInd < n; ++vertInd)
+                {
+                    if (color[vertInd] == false)
+                        dfs(vertInd, true, -1);
+                }
 
+                Console.WriteLine(ons);
+                Console.WriteLine(levers.Count);
+                Console.WriteLine(string.Join(" ", levers));
             }
 
         }

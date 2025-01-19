@@ -1,4 +1,5 @@
 ﻿using System;
+using static algo.leetcode.lc_155;
 
 /* 
  * CF Test
@@ -12,21 +13,18 @@ namespace leetcode_solver
     {
         static void Main(string[] args)
         {
-            algo.ozon_jan.ozon_6.Launch();
-            //for (int i = 0; i < _0049GroupAnagrams.Tcnt; ++i)
-            //{
-            //    Solution sol = new Solution();
-            //    var res = sol.IsValidSudoku(_0049GroupAnagrams.Inputs[i].ToArray());
-            //    if (res == _0049GroupAnagrams.ExpectedOutputs[i])
-            //    {
-            //        Console.WriteLine("test {0} chech!\n", i);
-            //    }
-            //    else
-            //    { 
-            //        Console.WriteLine("test {0} failed\n", i);
-            //        break;
-            //    }
-            //}
+            //bool tmp = false;
+            //tmp = algo.leetcode.lc_20.IsValid("([)]");
+            //Console.WriteLine(tmp);
+
+            MinStack minStack = new MinStack();
+            minStack.Push(1);
+            minStack.Push(2);
+            minStack.Push(0);
+            minStack.GetMin(); // return 0
+            minStack.Pop();
+            minStack.Top();    // return 2
+            minStack.GetMin(); // return 1
         }
     }
 }

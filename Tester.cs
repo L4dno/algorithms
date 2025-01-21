@@ -13,18 +13,10 @@ namespace leetcode_solver
     {
         static void Main(string[] args)
         {
-            //bool tmp = false;
-            //tmp = algo.leetcode.lc_20.IsValid("([)]");
-            //Console.WriteLine(tmp);
+            
+            algo.ozon_jan.ozon_4.Launch();
+            
 
-            MinStack minStack = new MinStack();
-            minStack.Push(1);
-            minStack.Push(2);
-            minStack.Push(0);
-            minStack.GetMin(); // return 0
-            minStack.Pop();
-            minStack.Top();    // return 2
-            minStack.GetMin(); // return 1
         }
     }
 }

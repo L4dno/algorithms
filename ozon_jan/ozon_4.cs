@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace algo.ozon_jan
 {
@@ -19,9 +20,25 @@ namespace algo.ozon_jan
             [JsonPropertyName("folders")]
             public List<Directory> dirNames { get; set; } = new List<Directory>();
         }
-        static int Count()
+        static int Count(Directory cur, bool hasVirus)
         {
-            return 1;
+            int cntCorrupted = 0;
+            
+            string pattern = @"\.hack";
+            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            foreach (string name in cur.fileNames)
+                    hasVirus = hasVirus | regex.IsMatch(name);
+
+            if (hasVirus)
+            {
+                cntCorrupted += cur.fileNames.Count;
+            }
+
+            foreach (Directory dir in cur.dirNames)
+            {
+                cntCorrupted += Count(dir, hasVirus);
+            }
+            return cntCorrupted;
         }
         static public void Launch()
         {
@@ -39,10 +56,10 @@ namespace algo.ozon_jan
                 }
                 var options = new JsonSerializerOptions
                 {
-                    MaxDepth = 0
+                    MaxDepth = 1024
                 };
                 Directory root = JsonSerializer.Deserialize<Directory>(sb.ToString(), options);
-                output.Write(4);
+                output.WriteLine(Count(root, false));
             }
         }
     }

@@ -14,7 +14,7 @@ namespace leetcode_solver
         static void Main(string[] args)
         {
             
-            algo.ozon_jan.ozon_4.Launch();
+            algo.ozon_jan.ozon_5.Launch();
             
 
         }

@@ -11,15 +11,17 @@ namespace algo.ozon_jan
     {
         public struct Car
         {
-            public Car(int st, int en, int cap)
+            public Car(int st, int en, int cap, int ind)
             {
                 start = st;
                 end = en;
                 capacity = cap;
+                index = ind;
             }
             public int start;
             public int end;
             public int capacity;
+            public int index;
         }
         public static void Launch()
         {
@@ -37,6 +39,7 @@ namespace algo.ozon_jan
                 {
                     products[i] = (int.Parse(tmp[i]), i);
                 }
+                Array.Sort(products);
 
                 int m = int.Parse(input.ReadLine());
 
@@ -45,7 +48,7 @@ namespace algo.ozon_jan
                 {
                     tmp = input.ReadLine().Split();
                     cars[i] = new Car(int.Parse(tmp[0]), 
-                                    int.Parse(tmp[1]), int.Parse(tmp[2]));
+                                    int.Parse(tmp[1]), int.Parse(tmp[2]), i+1);
                 }
                 cars = cars.OrderBy(car => car.start).ToArray();
 
@@ -58,16 +61,19 @@ namespace algo.ozon_jan
                     {
                         indCar++;
                     }
-                    // cant deliever this product
-                    if (indCar == m)
+                    // cant deliever this product at all
+                    if (indCar == m || cars[indCar].start > prod.Item1)
                     {
                         prodToCar[prod.Item2] = -1;
                     }
                     else
                     {
-                        prodToCar[prod.Item2] = indCar;
+                        prodToCar[prod.Item2] = cars[indCar].index;
+                        cars[indCar].capacity -= 1;
                     }
                 }
+
+                output.WriteLine(string.Join(" ", prodToCar));
             }
         }
     }

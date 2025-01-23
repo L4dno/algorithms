@@ -13,8 +13,8 @@ namespace leetcode_solver
     {
         static void Main(string[] args)
         {
-            
-            algo.ozon_jan.ozon_7.Launch();
+
+            algo.ozon_jan.ozon_2.Launch();
             
 
         }

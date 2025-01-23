@@ -10,13 +10,58 @@ namespace algo.ozon_jan
     {
         struct Point2
         {
-            public int x = 0; 
+            public int x = 0;
             public int y = 0;
 
             public Point2(int x, int y)
             {
                 this.x = x;
                 this.y = y;
+            }
+
+            public Point2()
+            {
+                this.x = 0;
+                this.y = 0;
+            }
+            public int Manh(Point2 rhs)
+            {
+                return int.Abs(x - rhs.x) + int.Abs(y - rhs.y);
+            }
+        }
+
+        static int n = 0;
+        static int m = 0;
+
+        static void toLeft(ref char[,] field, char robot, ref Point2 cur)
+        {
+            while (cur.x > 0 && field[cur.x - 1, cur.y] != '#')
+            {
+                cur.x -= 1;
+                field[cur.x, cur.y] = robot;
+                
+            }
+            while (cur.y > 0 && field[cur.x, cur.y - 1] != '#')
+            {
+                cur.y -= 1;
+                field[cur.x, cur.y] = robot;
+                
+            }
+        }
+
+        static void toRight(ref char[,] field, char robot, ref Point2 cur)
+        {
+            while (cur.x < n - 1 && field[cur.x + 1, cur.y] != '#')
+            {
+                cur.x += 1;
+                field[cur.x, cur.y] = robot;
+                
+            }
+            while (cur.y < m - 1 && field[cur.x, cur.y + 1] != '#')
+            {
+                cur.y += 1;
+                field[cur.x, cur.y] = robot;
+                
             }
         }
 
@@ -26,20 +71,22 @@ namespace algo.ozon_jan
             using var output = new StreamWriter(Console.OpenStandardOutput());
 
             int t = int.Parse(input.ReadLine());
-            while ( t-- > 0)
+            while (t-- > 0)
             {
-                int[] nm = input.ReadLine().Split().Select(x=>int.Parse(x)).ToArray();
-                int n = nm[0];
-                int m = nm[1];
+                int[] nm = input.ReadLine().Split().Select(x => int.Parse(x)).ToArray();
+                n = nm[0];
+                m = nm[1];
 
-                int[,] field = new int[n, m];
-                Point2 aPos;
-                Point2 bPos;
-                for (int i = 0;i<n;++i)
+                char[,] field = new char[n, m];
+                Point2 aPos = new Point2();
+                Point2 bPos = new Point2();
+
+                for (int i = 0; i < n; ++i)
                 {
-                    for (int j = 0;j<m;++j)
+                    string row = input.ReadLine();
+                    for (int j = 0; j < m; ++j)
                     {
-                        char c = (char)input.Read();
+                        char c = row[j];
                         if (c == '.' || c == '#')
                             field[i, j] = c;
                         else if (c == 'A')
@@ -54,8 +101,43 @@ namespace algo.ozon_jan
                         }
                     }
                 }
-            
-                
+
+                Point2 leftUp = new Point2(0, 0);
+                Point2 rightDown = new Point2(n-1, m-1);
+
+                int aLeftDist = aPos.Manh(leftUp);
+                int bLeftDist = bPos.Manh(leftUp);
+
+                if (aLeftDist <= bLeftDist)
+                {
+                    // А идет наверх
+
+                    toLeft(ref field, 'a', ref aPos);
+                    toLeft(ref field, 'a', ref aPos);
+
+                    toRight(ref field, 'b', ref bPos);
+                    toRight(ref field, 'b', ref bPos);
+
+                }
+                else
+                {
+                    // А идет вниз
+
+                    toLeft(ref field, 'b', ref bPos);
+                    toLeft(ref field, 'b', ref bPos);
+
+                    toRight(ref field, 'a', ref aPos);
+                    toRight(ref field, 'a', ref aPos);
+                }
+
+                for (int i = 0; i < n; ++i)
+                {
+                    for (int j = 0; j < m; ++j)
+                    {
+                        output.Write(field[i, j]);
+                    }
+                    output.WriteLine();
+                }
             }
         }
     }

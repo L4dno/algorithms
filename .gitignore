@@ -8,3 +8,5 @@ obj/
 *.csproj.user
 app.config
 Visual Studio 2022
+forstress/
+Properties/

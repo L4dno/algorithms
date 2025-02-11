@@ -18,18 +18,30 @@ namespace algo.ozon_jan
             {
                 int n = int.Parse(input.ReadLine());
 
-                in(int, int)[] speed = new (int, int)[n];
-                for (int i = 0;i<n;++i)
-                    speed[i] = (int.Parse(input.ReadLine()), i);
+                int[] speed = new int[n];
+                for (int i = 0; i < n; ++i)
+                    speed[i] = int.Parse(input.ReadLine());
 
                 int m = int.Parse(input.ReadLine());
 
-                (int,int)[] weight = new (int,int)[m];
-                for (int i =0;i<m;++i)
-                    weight[i] = (int.Parse(input.ReadLine()), i);
+                int[] weight = new int[m];
+                for (int i = 0; i < m; ++i)
+                    weight[i] = int.Parse(input.ReadLine());
 
-                //speed = speed.OrderByDescending()
+                List<(int, int)> times = new List<(int, int)>(n * m);
+                for (int servInd = 0; servInd < n; ++servInd)
+                {
+                    for (int fileInd = 0; fileInd < m; ++fileInd)
+                    {
+                        times.Add(((int)Math.Ceiling((double)weight[fileInd] /
+                                                    speed[servInd]), fileInd));
+                    }
+                }
+                times = times.OrderByDescending(x => x.Item1).ToList();
+                // проверить вычисление
+                // два указателя и переменная для минимума
+                // сет для картин
             }
-        }
+        } 
     }
 }

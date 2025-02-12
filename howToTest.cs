@@ -1,20 +1,20 @@
-﻿using System;
-using static algo.leetcode.lc_155;
+﻿//using System;
+//using static algo.leetcode.lc_155;
 
-/* 
- * CF Test
- * filename.Solution.Launch() -> Main() when sending
-*/
+///* 
+// * CF Test
+// * filename.Solution.Launch() -> Main() when sending
+//*/
 
 
-namespace leetcode_solver
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
+//namespace leetcode_solver
+//{
+//    internal class Program
+//    {
+//        static void Main(string[] args)
+//        {
 
-            algo.ozon_jan.ozon_6d.Launch();
-        }
-    }
-}
+//            algo.ozon_jan.ozon_6d.Launch();
+//        }
+//    }
+//}

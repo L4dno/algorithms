@@ -49,6 +49,8 @@ namespace algo.ozon_jan
 
                 int[] fileToServMin = new int[m];
                 int difMin = 1000000000;
+                int lMin = 0;
+                int rMin = 0;
 
                 int sentCnt = 0;
                 int[] usedFiles = new int[m];
@@ -65,29 +67,34 @@ namespace algo.ozon_jan
                         if (usedFiles[times[r].file] == 1)
                             sentCnt++;
 
-                        if (r < n * m && times[l].time - times[r].time < difMin)
-                        {
-                            difMin = times[l].time - times[r].time;
-                            Console.WriteLine(difMin);
-                            for (int k = l; k < r; ++k)
-                            {
-                                fileToServMin[times[k].file] = times[k].server;
-                            }
-                        }
+                        
                         // добавляем в счетчик
                         // либо удаляем
                         // обновляем cnt
                         r++;
                     }
-                    
+
+                    if (r <= n * m && sentCnt==m &&  times[l].time - times[r-1].time < difMin)
+                    {
+                        difMin = times[l].time - times[r-1].time;
+                        //Console.WriteLine(difMin);
+                        lMin = l;
+                        rMin = r;
+                    }
+
                     usedFiles[times[l].file] -= 1;
                     if (usedFiles[times[l].file] == 0)
                         sentCnt--;
                 }
 
+                for (int i = lMin;i<rMin;++i)
+                {
+                    fileToServMin[times[i].file] = times[i].server + 1; 
+                }
+
 
                 output.WriteLine(difMin);
-                output.WriteLine(string.Join("", fileToServMin));
+                output.WriteLine(string.Join(" ", fileToServMin));
             }
         } 
     }
